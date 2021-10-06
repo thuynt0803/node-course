@@ -2,7 +2,7 @@
 
 ## What is Node.js and Why use it?
 
-Node.JS là một JavaScript Runtime được xây dựng trên công cụ JavaScript V8, open source của Google.
+> Node.JS là một JavaScript Runtime được xây dựng trên công cụ JavaScript V8, open source của Google.
 
 ### JavaScript Runtime:
 
@@ -22,9 +22,11 @@ Link video tham khảo: https://www.youtube.com/watch?v=IGkz8Zu9rRk
 
 ### V8 - Javascript engine đằng sau Chrome và Node.js:
 
-V8 (hay Chrome V8) - là một Javascript engine được phát triển bởi google (viết bằng C++), mục đích ban đầu là dành cho GG Chrome, ra mắt 12/2008. Năm 2009, Node.js ra mắt và sử dụng V8 làm Javascript engine.
+> V8 (hay Chrome V8) - là một Javascript engine được phát triển bởi google (viết bằng C++), mục đích ban đầu là dành cho GG Chrome, ra mắt 12/2008. Năm 2009, Node.js ra mắt và sử dụng V8 làm Javascript engine.
 
-Javascript engine: là một chương trình hoặc trình thông dịch thực thi mã Javascript (JS là ngôn ngữ thông dịch). Nó có thể được thực hiện như một trình thông dịch tiêu chuẩn, hoặc compiler (trình biên dịch) phù hợp để biên dịch JavaScript thành bytecode trong một số hình thức.
+> V8 là nơi mã JS được phân tích cú pháp và chạy trong NodeJS
+
+> Javascript engine: là một chương trình hoặc trình thông dịch thực thi mã Javascript (JS là ngôn ngữ thông dịch). Nó có thể được thực hiện như một trình thông dịch tiêu chuẩn, hoặc compiler (trình biên dịch) phù hợp để biên dịch JavaScript thành bytecode trong một số hình thức.
 
 Ngoài V8 còn có 1 vài Javascript engine khác:
 
@@ -39,13 +41,9 @@ Ngoài V8 còn có 1 vài Javascript engine khác:
 
 Có thể đọc thêm về V8 tại đây: https://topdev.vn/blog/cach-thuc-hoat-dong-cua-javascript-v8-engine-va-5-meo-toi-uu-hoa/
 
-V8 là nơi mã JS được phân tích cú pháp và chạy trong NodeJS
-
 ### Javascript on the server:
 
-Javascript có thể thực thi trong môi trường độc lập - NodeJS. Tại đây, ta có thể làm nhiều thứ hơn (những cái không bị hạn chế trên browser), ví dụ như: truy cập file system; khả năng kết nối internet tốt hơn ...
-
-=> Đây là điều kiện để sử dụng NodeJS làm web server
+> Javascript có thể thực thi trong môi trường độc lập - NodeJS. Tại đây, ta có thể làm nhiều thứ hơn (những cái không bị hạn chế trên browser), ví dụ như: truy cập file system; khả năng kết nối internet tốt hơn ... => Đây là điều kiện để sử dụng NodeJS làm web server.
 
 Một số trường hợp sử dụng Node và lý do nó phù hợp để phát triển backend:
 
@@ -65,7 +63,7 @@ Một số trường hợp sử dụng Node và lý do nó phù hợp để phá
 
 ### NPM:
 
-NPM (Node Package Manager): là một công cụ tạo và quản lý các thư viện javascript cho Nodejs.
+> NPM (Node Package Manager): là một công cụ tạo và quản lý các thư viện javascript cho Nodejs.
 
 Cài đặt NPM:
 
