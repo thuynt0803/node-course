@@ -79,4 +79,28 @@ Kiểm tra các package đang được instal:
     - npm ls (check packages local)
     - npm ls g (check packages global)
 
-## Running Javascript outside the browser:
+### Synchronous & Asynchronous (Blocking & Non-blocking)
+
+Synchronous (đồng bộ):
+
+> Mỗi câu lệnh sẽ được xử lý lần lượt từng dòng một, từ trên xuống dưới, dòng sau được thực thi sau khi có kết quả của dòng trước. Một hoạt động nhất định chỉ có thể được thực hiện sau khi cái trước đã kết thúc.
+> Mỗi dòng đều chặn việc thực thi của các phần còn lại của code => Vì vậy mới nói: synchronous code là blocking code
+
+Asynchronous (không đồng bộ):
+
+    - Kiến trúc xử lý bất đồng bộ trong Node.js: https://dev.to/mnhattt/kin-trc-x-l-bt-ng-b-trong-nodejs-nnf
+    - I/O: viết tắt của input - output: là những thứ như truy cập file system và xử lý các request internet.
+    => Đây là lý do Node.js được thiết kế xung quanh các hàm callback()
+    - Callbacks khác với asynchronous  (không đồng bộ):
+
+> Chú ý: Khi sử dụng lệnh callback trong code, điều đó không tự động làm cho nó không đồng bộ
+> Node.js triển khai các hoạt động không đồng bộ bằng cách gọi các cuộc gọi lại (callback) sau khi hoạt động mà nó đang làm đã được hoàn thành.
+
+## Routing:
+
+> Routing có ý nghĩa thực hiện các hành động khác nhau cho các URL khác nhau.
+> Routing được xây dựng trong code và routing được truy cập từ browser không liên quan gì đến các file, folder trong hệ thống file của project.
+
+## API:
+
+    - Hiểu cơ bản: API là một dịch vụ mà từ đó chúng ta có thể yêu cầu một số dữ liệu
