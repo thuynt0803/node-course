@@ -1,0 +1,14 @@
+* NODE is Javascript runtime dựa trên động cơ V8 của GG.
+
+* V8 Engine: 
+    - Chuyển đổi mã JS thành mã máy mà máy tính thực sự có thể hiểu được
+    - V8 sử dụng mã C++ bên cạnh Javascript
+
+* Libuv: 
+    - Là thư viện mã nguồn mở tập trung chủ yếu vào IO không đồng bộ. Nó cung cấp cho Node quyền truy cập vào hệ điều hành máy tính, hệ thống file, mạng ...
+    - Libuv cung cấp 2 tính năng quan trọng trong Node: 
+        * Event-loop: chịu trách nhiệm xử lý các tác vụ dễ dàng như thực hiện call back, mạng IO
+        * Thread pool: xử lý công việc nặng hơn như quyền truy cập hoặc nén file 
+    - Libuv được viết hoàn toàn bởi C++
+
+1. NODE PROCESS & THREADSm

@@ -63,7 +63,7 @@ Một số trường hợp sử dụng Node và lý do nó phù hợp để phá
 
 ### NPM:
 
-> NPM (Node Package Manager): là một công cụ tạo và quản lý các thư viện javascript cho Nodejs.
+> NPM (Node Package Manager): là một công cụ cài đặt và là nơi lưu trữ, quản lý các thư viện javascript, package cho Nodejs.
 
 Cài đặt NPM:
 
@@ -71,13 +71,20 @@ Cài đặt NPM:
 
 Cài đặt global và local:
 
-    - Local: sẽ tạo ra thư mục node_modules nếu chưa có trong project hoặc nếu có rồi nó sẽ lấy code của gói cần cài đặt đưa vào đây, tức chỉ hiện diện trong thư mục của project hiện tại. Khi cần sử dụng bạn có thể sử dụng lệnh require().
+    - Local (dependencies): sẽ tạo ra thư mục node_modules nếu chưa có trong project hoặc nếu có rồi nó sẽ lấy code của gói cần cài đặt đưa vào đây. Khi cần sử dụng bạn có thể sử dụng lệnh require(). Local modules chỉ sử dụng trong dự án hiện tại
+
+
     - Global: sẽ lưu trữ code của gói trong các file hệ thống cố định trong máy, chỉ có thể dùng các package này thông qua các hàm CLI (Command Line Interface) ví dụ như gulp. Không thể dùng package thông qua require().
 
 Kiểm tra các package đang được instal:
 
     - npm ls (check packages local)
     - npm ls g (check packages global)
+
+NOTE:
+
+> Khi share code or push Git >> xóa folder node_modules
+> ⇒ Do đó khi clone về, chỉ cần run: npm install - nó sẽ dựa vào file package.json & package-lock.json để install các dependencies cần thiết để run scripts.
 
 ### Synchronous & Asynchronous (Blocking & Non-blocking)
 
@@ -104,3 +111,47 @@ Asynchronous (không đồng bộ):
 ## API:
 
     - Hiểu cơ bản: API là một dịch vụ mà từ đó chúng ta có thể yêu cầu một số dữ liệu
+
+## NOTE: other
+
+    - Trong node.js mọi file đều được coi là 1 module
+    - Exports module:
+
+> Nếu exports module không có tên => đây là module ẩn danh vì nó không có tên,
+
+# Back-end web development
+
+> Khi nhập 1 URL vào browser để mở một trang web hoặc khi yêu cầu data từ một số API => browser gửi một request đến máy chủ nơi lưu trữ trang web
+
+> Ví dụ URL: https://www.google.com/maps
+> VD địa chỉ IP: https://216.58.211.206:443
+
+    - Protocol (HTTP or HTTPS): https://www. or https://
+    - Domain name: google.com - domain name không phải là địa chỉ thực của server. DNS (domain name server) sẽ chuyển đổi domain name thành địa chỉ IP thực
+    - Resource: /maps
+    - Địa chỉ IP: 216.58.211.206:
+    - Port number: 443 - port number chỉ để xác định một dịch vụ cụ thể đang chạy trên một máy chủ. Port number không liên quan đến resource mà mình muốn truy cập
+        1. Nhập 1 URL vào trình duyệt => DNS sẽ đổi domain name của URL thành địa chỉ IP thực của server
+        2. Sau khi có địa chỉ IP thực => TCP socket được thiết lập để kết nối browser và server
+
+## Static website and Dynamic website and API-Powered website
+
+### 1. Static website:
+
+> Browser hiển thị data từ files HTML, CSS, JS có sắn, không thay đổi được data.
+
+##### HTML + CSS + JS <=> BROWSER => UI
+
+### 2. Dynamic website:
+
+> Sử dụng database để lưu trữ dữ liệu, nội dung trang web có thể thay đổi
+
+##### DB -> GET data -> Build website / Template -> HTML + CSS + JS <=> BROWSER => UI
+
+> Web application = dynamic website + functionality
+
+### 3. API:
+
+##### DB -> GET data -> JSON <=> BROWSER -> Build website / Template -> UI
+
+> Mỗi API chỉ gửi dữ liệu đến trình duyệt thường ở dạng JSON (không có HTML, CSS)

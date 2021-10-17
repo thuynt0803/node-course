@@ -2,20 +2,8 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 
+const replaceTemplate = require('./modules/replaceTemplate');
 
-const replaceTemplate = (temp, product) => {
-    let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
-    output = output.replace(/{%IMAGE%}/g, product.image);
-    output = output.replace(/{%FROM%}/g, product.from);
-    output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
-    output = output.replace(/{%QUANTITY%}/g, product.quantity);
-    output = output.replace(/{%PRICE%}/g, product.price);
-    output = output.replace(/{%DESCRIPTION%}/g, product.description);
-    output = output.replace(/{%ID%}/g, product.id);
-
-    if (!product.organic) output = output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
-    return output;
-}
 
 const tempOverview = fs.readFileSync(`${__dirname}/views/overview.html`, "utf-8");
 const tempProduct = fs.readFileSync(`${__dirname}/views/product.html`, "utf-8");
@@ -26,28 +14,30 @@ const dataObject = JSON.parse(data);
 
 // Khởi tạo một máy chủ: là kết quả của phương thức createServer()
 const server = http.createServer((req, res) => {
-    const pathName = req.url;
+    const { query, pathname } = url.parse(req.url, true) // ý nghĩa của true: để thực sự phân tích cú pháp truy vấn (query) thành một đối tượng
 
-    // Overview page
-    if (pathName === "/" || pathName === "/overview") {
+    if (pathname === "/" || pathname === "/overview") { // OVERVIEW PAGE
         res.writeHead(200, { "Content-type": "text/html" });
 
-        const cardsHTML = dataObject.map(el => replaceTemplate(tempCard, el)).join('');
-        const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHTML);
+        // replaceTemplate lấy html của card (tempCard), 
+        // el: chứa dữ liệu;  
+        // join('') : nối phần tử trả về dưới dạng string
+        const cardsHtml = dataObject.map(el => replaceTemplate(tempCard, el)).join('');
+        const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
 
         res.end(output);
 
-        // Product page
-    } else if (pathName === "/product") {
-        res.end(tempProduct);
+    } else if (pathname === "/product") { // PRODUCT PAGE
+        res.writeHead(200, { "Content-type": "text/html" });
+        const product = dataObject[query.id];
+        const output = replaceTemplate(tempProduct, product);
+        res.end(output);
 
-        // API
-    } else if (pathName === "/api") {
-        res.writeHead(200, { "Content-type": "application/json" });
+    } else if (pathname === "/api") { // API
+        res.writeHead(200, { "Content-type": "application/json" }); // hiển thị 
         res.end(data);
 
-        // NOT FOUND
-    } else {
+    } else { // NOT FOUND
         res.writeHead(404, {
             'Content-type': "text/html",
             "my-own-header": "hello-world"
@@ -55,8 +45,6 @@ const server = http.createServer((req, res) => {
         res.end("<h1>Page not found!</h1>");
     }
 });
-
-
 
 // param 1 : port , param 2 : địa chỉ IP tiêu chuẩn cho localhost 
 // localhost: máy chủ cục bộ, chính là máy tính hiện tại đang chạy chương trình này
