@@ -1,6 +1,7 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
+const slugify = require('slugify'); // slugify là phần cuối của URL chứa 1 chuỗi duy nhất xác định tài nguyên mà trang web đang hiển thị.
 
 const replaceTemplate = require('./modules/replaceTemplate');
 
@@ -11,6 +12,9 @@ const tempCard = fs.readFileSync(`${__dirname}/views/card.html`, "utf-8");
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
 const dataObject = JSON.parse(data);
+
+const slugs = dataObject.map(el => slugify(el.productName, { lower: true }));
+console.log(slugs);
 
 // Khởi tạo một máy chủ: là kết quả của phương thức createServer()
 const server = http.createServer((req, res) => {

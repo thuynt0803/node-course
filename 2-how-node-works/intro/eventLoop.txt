@@ -1,0 +1,7 @@
+Start => expried timer callbacks => I/O polling and callbacks => setimmediate callbacks => close callbacks.
+
+Đây là bốn giai đoạn trong vòng lặp sự kiện, ngoài ra còn có 2 hàng đợi khác:
+    * Process.nexttick() queue: 
+    * Other microtasks queue:
+
+    => nếu có 1 trong 2 queue này sau mỗi giai đoạn trên => chúng sẽ được thực hiện ngay sau khi kết thúc giai đoạn đó.

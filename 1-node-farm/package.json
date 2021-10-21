@@ -1,0 +1,16 @@
+{
+    "name": "1-node-farm",
+    "version": "1.0.0",
+    "description": "> Cái này không dùng framework Express nhé quý dị!!!",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
+    },
+    "author": "thuynguyen",
+    "license": "ISC",
+    "dependencies": {
+        "nodemon": "^2.0.13",
+        "slugify": "^1.6.1"
+    }
+}
