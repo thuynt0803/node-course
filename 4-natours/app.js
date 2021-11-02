@@ -19,16 +19,24 @@ app.get('/api/v1/tours', (req, res) => {
 });
 
 app.get('/api/v1/tours/:id', (req, res) => {
-    console.log(req.params); // req.params : chứa các tham số được truyền từ URL (biến trong URL là tham số)
+    console.log(req.params); // req.params : chua tham so duoc chuyen tu URL (bien trong URL la tham so)
 
-    // const tour = tours.find(el => ) // find() : func cua JS
+    const id = req.params.id * 1; // chuyen id : string -> number
+    const tour = tours.find((el) => el.id === id); // find() : func cua JS
+
+    // if (id > tours.length)
+    if (!tour) {
+        return res.status(404).send({
+            status: 'fail',
+            message: 'Invalid ID',
+        });
+    }
 
     res.status(200).json({
         status: 'success',
-        // result:   tours.length,
-        // data: {
-        //     tours: tours,
-        // },
+        data: {
+            tour: tour,
+        },
     });
 });
 
@@ -52,6 +60,38 @@ app.post('/api/v1/tours', (req, res) => {
             }); // code: 201 - created success ; 200: Okay
         }
     );
+});
+
+app.patch('/api/v1/tours/:id', (req, res) => {
+    if (req.params.id * 1 > tours.length) {
+        return res.status(404).send({
+            status: 'fail',
+            message: 'Invalid ID',
+        });
+    }
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            tour: 'Update tour here ...',
+        },
+    });
+});
+
+app.delete('/api/v1/tours/:id', (req, res) => {
+    if (req.params.id * 1 > tours.length) {
+        return res.status(404).send({
+            status: 'fail',
+            message: 'Invalid ID',
+        });
+    }
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            tour: 'null',
+        },
+    });
 });
 
 const port = 3000;
