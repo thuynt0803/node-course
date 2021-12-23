@@ -14,10 +14,10 @@ app.use(express.json()); // middleware, doc du lieu tu body, thay the cho: body-
 
 app.use(express.static(`${__dirname}/public`));
 
-app.use((req, res, next) => {
-    console.log('Hello from the middleware');
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log('Hello from the middleware');
+//     next();
+// });
 
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();

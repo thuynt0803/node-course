@@ -1,6 +1,6 @@
 [{
         "id": 0,
-        "name": "The Forest Hiker",
+        "name": "The Forest",
         "duration": 5,
         "maxGroupSize": 25,
         "difficulty": "easy",
@@ -204,23 +204,5 @@
             "2022-01-16,10:00",
             "2022-12-12,10:00"
         ]
-    },
-    {
-        "id": 9,
-        "name": "halloween",
-        "duration": 10,
-        "difficulty": "easy"
-    },
-    {
-        "id": 10,
-        "name": "halloween with friend",
-        "duration": 10,
-        "difficulty": "miss you too"
-    },
-    {
-        "id": 11,
-        "name": "friendzone",
-        "duration": 10,
-        "difficulty": "Khong biet noi nhu the nao =))"
     }
 ]
