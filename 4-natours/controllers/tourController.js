@@ -2,19 +2,43 @@ const Tour = require('../models/tourModel');
 
 exports.getAllTours = async(req, res) => {
     try {
+        console.log(req.query);
+
+        // BIULD QUERY
+        // 1A) Filtering
         const queryObj = {...req.query };
         const excludedFields = ['page', 'sort', 'limit', 'fields'];
         excludedFields.forEach((el) => delete queryObj[el]);
-        console.log(req.query, queryObj);
 
-        const tours = await Tour.find(queryObj);
+        // 1B) Advanced filtering
+        let queryStr = JSON.stringify(queryObj);
+        queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+        console.log(JSON.parse(queryStr));
 
+        // { difficulty: 'easy', duration: { $gte: 5 } }
+        // { difficulty: 'easy', duration: { gte: '5' } }
+        // gte, gt, lte, lt
+
+        let query = Tour.find(JSON.parse(queryStr));
+
+        // 2) Sorting
+        if (req.query.sort) {
+            const sortBy = req.query.sort.split(',').join(' ');
+            query = query.sort(sortBy);
+            // Sort('price, ratingsAverage') : Sort theo dkien 2 khi dkien 1 co values bang nhau
+        } else {
+            query = query.sort('-createdAt');
+        }
+
+        // EXECUTE QUERY
+        const tours = await query;
         // const tours = await Tour.find()
         //     .where('duration')
         //     .equals(5)
         //     .where('difficulty')
         //     .equals('easy');
 
+        // SEND RESPONSE
         res.status(200).json({
             status: 'success',
             requestedAt: req.requestTime,
